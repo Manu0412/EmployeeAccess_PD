@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\ValueObjects\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-
 </Project>
