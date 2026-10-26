@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="EmployeeAccess.Application/EmployeeAccess.Application.csproj" Id="885854d7-5a7e-4af4-ba90-935c69794b1d" />
+    <Project Path="EmployeeAccess.Domain/EmployeeAccess.Domain.csproj" Id="ab264f07-fc68-4ac0-99fc-28ee518efec1" />
+  </Folder>
+  <Folder Name="/Infraestructure/">
+    <Project Path="EmployeeAccess.Persistence/EmployeeAccess.Persistence.csproj" Id="72074dbf-9379-4851-bb9a-b00f36222e81" />
+  </Folder>
+  <Folder Name="/Presenters/">
+    <Project Path="EmployeeAccess.Api/EmployeeAccess.Api.csproj" Id="db571c43-0a6f-47c9-a33c-ed85c63de4fc" />
+  </Folder>
+  <Folder Name="/Test/">
+    <Project Path="EmployeeAccess.Test/EmployeeAccess.Test.csproj" Id="5ce5657a-ae94-4d40-bdb7-ecbd10c97276" />
+  </Folder>
+</Solution>
