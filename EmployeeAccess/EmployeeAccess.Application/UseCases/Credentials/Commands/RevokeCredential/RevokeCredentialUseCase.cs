@@ -1,0 +1,45 @@
+﻿using EmployeeAccess.Application.Contracts.Persistence;
+using EmployeeAccess.Application.Contracts.Repositories;
+using EmployeeAccess.Application.Exceptions;
+using EmployeeAccess.Application.UseCases.Common;
+using EmployeeAccess.Application.Utilities.Mediator;
+using EmployeeAccess.Application.Utilities.Results;
+using EmployeeAccess.Domain.Entities.Credentials;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace EmployeeAccess.Application.UseCases.Credentials.Commands.RevokeCredential;
+
+public sealed class RevokeCredentialUseCase :
+    BaseHandler, IRequestHandler<RevokeCredentialCommand, Result<Guid>>
+{
+    private readonly ICredentialsRepository _credentialsRepository;
+    private readonly IUnitOfWork _unitOfWork;
+
+    public RevokeCredentialUseCase(ICredentialsRepository credentialsRepository, IUnitOfWork unitOfWork)
+    {
+        _credentialsRepository = credentialsRepository;
+        _unitOfWork = unitOfWork;
+    }
+
+    public async Task<Result<Guid>> Handle(RevokeCredentialCommand command)
+    {
+        return await ExecuteAsync(async () =>
+        {
+            Credential? credential = await _credentialsRepository.GetByIdAsync(command.Id);
+
+            if (credential is null)
+            {
+                throw new NotFoundException($"No existe una credencial con ID {command.Id}.");
+            }
+
+            credential.Revoke();
+
+            await _credentialsRepository.UpdateAsync(credential);
+            await _unitOfWork.CommitAsync();
+
+            return credential.Id;
+        });
+    }
+}
